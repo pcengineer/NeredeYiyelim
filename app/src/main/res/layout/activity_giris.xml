@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.merve.neredeyiyelim.GirisActivity"
+    android:layout_marginTop="150dp"
+    >
+
+
+    <Button
+        android:id="@+id/buttonCafe"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="Cafe" />
+
+    <Button
+        android:id="@+id/buttonKullanici"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="Kullanıcı"
+        />
+
+
+</LinearLayout>

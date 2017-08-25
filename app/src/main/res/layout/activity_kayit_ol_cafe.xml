@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.merve.neredeyiyelim.KayitOlCafe">
+
+    <EditText
+        android:id="@+id/editTextCafeAdi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Cafe Adı" />
+
+    <EditText
+        android:id="@+id/editTextMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Mail" />
+
+    <EditText
+        android:id="@+id/editTextSifre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Sifre" />
+
+    <EditText
+        android:id="@+id/editTextAdres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:hint="Adres"/>
+
+    <Button
+        android:id="@+id/buttonKayitOl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Oluştur" />
+
+</LinearLayout>
