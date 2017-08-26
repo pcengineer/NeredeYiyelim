@@ -43,7 +43,6 @@ public class CafeGiris extends AppCompatActivity {
         etCpass = (EditText) findViewById(R.id.editTextCafePass);
         btngiris = (Button) findViewById(R.id.buttonCafeGiris);
         tvCyazi = (TextView) findViewById(R.id.textViewCafeYazi);
-
         tvCyazi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

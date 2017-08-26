@@ -27,7 +27,6 @@ public class CafeAnaSayfa extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafe_ana_sayfa);
-
         lvMenu =(ListView) findViewById(R.id.listViewMenuler);
         etMenuAdi = (EditText) findViewById(R.id.editTextMenuAdi);
         etFiyat= (EditText) findViewById(R.id.editTextFiyati);

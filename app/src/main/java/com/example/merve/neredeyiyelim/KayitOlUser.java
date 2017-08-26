@@ -19,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 public class KayitOlUser extends AppCompatActivity {
     EditText etUserAdi,etUserSoyadi,etUsersifre,etUsermail;
     Button btnUserKaydol;

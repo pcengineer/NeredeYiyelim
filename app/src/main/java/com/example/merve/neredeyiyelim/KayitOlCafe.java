@@ -50,7 +50,6 @@ cafelerRef=database.getReference("cafeler");
                 mail = etCafeMail.getText().toString();
                 sifre = etCafeSifre.getText().toString();
                 adres = etCafeAdres.getText().toString();
-
                 mAuth = FirebaseAuth.getInstance();
 
                 mAuth.createUserWithEmailAndPassword(mail,sifre).addOnCompleteListener(KayitOlCafe.this, new OnCompleteListener<AuthResult>() {
