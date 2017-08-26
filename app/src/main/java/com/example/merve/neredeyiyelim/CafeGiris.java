@@ -14,6 +14,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CafeGiris extends AppCompatActivity {
 
@@ -23,6 +28,9 @@ public class CafeGiris extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     String mail,sifre;
+
+    FirebaseDatabase database;
+    DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +45,6 @@ public class CafeGiris extends AppCompatActivity {
         tvCyazi = (TextView) findViewById(R.id.textViewCafeYazi);
 
 
-
         tvCyazi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +53,8 @@ public class CafeGiris extends AppCompatActivity {
             }
         });
 
+        database=FirebaseDatabase.getInstance();
+        dbRef=database.getReference("roles");
         btngiris.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,8 +67,26 @@ public class CafeGiris extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Intent i = new Intent(getApplicationContext(),CafeAnaSayfa.class);
-                            startActivity(i);
+                            dbRef.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    String role=dataSnapshot.getValue().toString();
+                                    if(role.equals("Cafe")){
+                                        Intent i = new Intent(getApplicationContext(),CafeAnaSayfa.class);
+                                        startActivity(i);
+                                    }
+                                    else{
+
+                                        Toast.makeText(getApplicationContext(),"Bu cafe hesabı değil,lütfen kullanıcı girişini deneyiniz!",Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            })   ;
+
 
                         }
                         else{

@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class KayitOlCafe extends AppCompatActivity {
 
@@ -22,6 +24,9 @@ public class KayitOlCafe extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     String cafeismi,mail,sifre,adres;
+
+    FirebaseDatabase database;
+    DatabaseReference dbRef;
 
 
     @Override
@@ -36,7 +41,8 @@ public class KayitOlCafe extends AppCompatActivity {
         etCafeAdres = (EditText) findViewById(R.id.editTextAdres);
         btnOlustur= (Button) findViewById(R.id.buttonKayitOl);
 
-
+        database=FirebaseDatabase.getInstance();
+        dbRef=database.getReference("roles");
         btnOlustur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +57,8 @@ public class KayitOlCafe extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            dbRef.child(mAuth.getCurrentUser().getUid()).setValue("Cafe");
+
                             Intent i = new Intent(getApplicationContext(),CafeGiris.class);
                             startActivity(i);
                             finish();

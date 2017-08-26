@@ -14,6 +14,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class KullaniciLogin extends AppCompatActivity {
 
@@ -24,7 +29,8 @@ public class KullaniciLogin extends AppCompatActivity {
     FirebaseAuth mAuth;
     String username,password;
 
-
+FirebaseDatabase database;
+    DatabaseReference dbRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +49,8 @@ public class KullaniciLogin extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+database=FirebaseDatabase.getInstance();
+        dbRef=database.getReference("roles");
         btnGiris.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,10 +60,28 @@ public class KullaniciLogin extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Intent i = new Intent(getApplicationContext(),UserAnasayfa.class);
-                            startActivity(i);
-                            finish();
+                        if (task.isSuccessful() ) {
+dbRef.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(DataSnapshot dataSnapshot) {
+        String role=dataSnapshot.getValue().toString();
+        if(role.equals("User")){
+            Intent i = new Intent(getApplicationContext(),UserAnasayfa.class);
+            startActivity(i);
+            finish();
+        }
+        else{
+
+            Toast.makeText(getApplicationContext(),"Bu kullanıcı hesabı değil,lütfen cafe girişini deneyiniz!",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onCancelled(DatabaseError databaseError) {
+
+    }
+});
+
 
                         }
                         else{
