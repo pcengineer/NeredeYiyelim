@@ -42,6 +42,7 @@ FirebaseDatabase database;
         tvyazi = (TextView) findViewById(R.id.textViewUseryazi);
 
 
+
         tvyazi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

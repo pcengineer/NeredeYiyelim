@@ -22,7 +22,6 @@ public class CafeAnaSayfa extends AppCompatActivity {
     EditText etMenuAdi,etFiyat;
     Button btnEkle;
     FirebaseDatabase database;
-    String menu;
 
 
     @Override
@@ -42,15 +41,17 @@ public class CafeAnaSayfa extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
 
-        final DatabaseReference dbRef=database.getReference("menu/"+menu);
+        final DatabaseReference dbRef=database.getReference("cafeler/"+firebaseUser.getUid());
 
         btnEkle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String menuAdi= firebaseUser.getEmail();
-                String fiyat = firebaseUser.getEmail();
+                String menuAdi= etMenuAdi.getText().toString();
+                String fiyat = etFiyat.getText().toString();
 
                 dbRef.push().setValue(new Menu(menuAdi,fiyat));
+                etMenuAdi.setText("");
+                etFiyat.setText("");
             }
         });
 

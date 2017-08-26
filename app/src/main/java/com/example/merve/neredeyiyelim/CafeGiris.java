@@ -77,6 +77,7 @@ public class CafeGiris extends AppCompatActivity {
                                     }
                                     else{
 
+
                                         Toast.makeText(getApplicationContext(),"Bu cafe hesabı değil,lütfen kullanıcı girişini deneyiniz!",Toast.LENGTH_SHORT).show();
                                     }
                                 }
