@@ -23,7 +23,6 @@ public class CafeAnaSayfa extends AppCompatActivity {
     Button btnEkle;
     FirebaseDatabase database;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

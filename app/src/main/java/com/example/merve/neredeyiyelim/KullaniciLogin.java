@@ -72,7 +72,6 @@ dbRef.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEven
             finish();
         }
         else{
-
             Toast.makeText(getApplicationContext(),"Bu kullanıcı hesabı değil,lütfen cafe girişini deneyiniz!",Toast.LENGTH_SHORT).show();
         }
     }

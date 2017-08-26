@@ -40,7 +40,6 @@ public class KayitOlCafe extends AppCompatActivity {
         etCafeSifre = (EditText) findViewById(R.id.editTextSifre);
         etCafeAdres = (EditText) findViewById(R.id.editTextAdres);
         btnOlustur= (Button) findViewById(R.id.buttonKayitOl);
-
         database=FirebaseDatabase.getInstance();
         dbRef=database.getReference("roles");
 cafelerRef=database.getReference("cafeler");
