@@ -3,6 +3,7 @@ package com.example.merve.neredeyiyelim;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,13 +21,10 @@ import java.util.ArrayList;
 
 public class UserAnasayfa extends AppCompatActivity {
     ListView lvSonuc;
-    ListView lvMenu;
     EditText etTutar;
     Button btnAra;
     FirebaseDatabase database;
-    ArrayList<Menu> menuList;
-    FirebaseUser fUser;
-
+int fiyat;
 
 
 
@@ -39,62 +37,77 @@ public class UserAnasayfa extends AppCompatActivity {
         etTutar =(EditText) findViewById(R.id.editTextTutar);
         btnAra = (Button) findViewById(R.id.buttonAra);
 
+
+
+        database=FirebaseDatabase.getInstance();
+
+        final DatabaseReference dbRef=database.getReference("cafeler");
+
+
         final ArrayList<KullaniciMenu> sonucList= new ArrayList<>();
 
-
-
-        final DatabaseReference dbRef=database.getReference("cafeler/");
-        final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-
-        database = FirebaseDatabase.getInstance();
 
         btnAra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int fiyat =Integer.parseInt(etTutar.getText().toString());
+                fiyat =Integer.parseInt(etTutar.getText().toString());
+                dbRef.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        sonucList.clear();
+                        for (final DataSnapshot ds : dataSnapshot.getChildren()) { //cafelerin çocuklarını geziyoruz
+                            final String cafeAdi = ds.child("ad").getValue().toString();//cafenin adı
+                            final String adres = ds.child("adres").getValue().toString();//cafe adresi
+                            final DatabaseReference dbRef2 = ds.child("menuler").getRef();
+
+                            dbRef2.addValueEventListener(new ValueEventListener() {    //cafeler/menuler'i dinliyoruz
+
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot ds2 : dataSnapshot.getChildren()) {
+
+                                        int dsfiyat = ds2.child("fiyat").getValue(Integer.class);//menu fiyatı
+                                        String dsMenuIsmi = ds2.child("menuAdi").getValue().toString();//menu adı
+                                        if (dsfiyat <= fiyat) {//benim paramdan daha az ya da eşit ise
+                                            sonucList.add(new KullaniciMenu(dsMenuIsmi, cafeAdi, dsfiyat, adres));//paramın yettiklerini listeye attık
+                                            Log.i("sonuçlar", dsfiyat + " " + dsMenuIsmi + " " + cafeAdi + " " + adres);
+
+                                        }
+                                    }
+
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        }
+                        final KullaniciAdapter adapter = new KullaniciAdapter(UserAnasayfa.this,sonucList);
+                        lvSonuc.setAdapter(adapter);
 
 
-                dbRef.push().child("fiyat").setValue(fiyat);
+                        adapter.notifyDataSetChanged();
+                    }
 
-            }
-        });
-
-
-        final KullaniciAdapter adapter = new KullaniciAdapter(this,sonucList,firebaseUser);
-        dbRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                menuList.clear();
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
-
-                    menuList.add(ds.getValue(Menu.class));
-
-
-
-                    if(etTutar.getText()<=menuList.getFiyat()){
-                        sonucList.add(ds.getValue(KullaniciMenu.class));
-
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
-                }
+                });
 
-                lvSonuc.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
+//cafeler->cafeId->ad,adres,menuler->ad,fiyat
 
 
+//db 'de cafeleri dinledik
 
 
+            }
 
 
     }
-}
+

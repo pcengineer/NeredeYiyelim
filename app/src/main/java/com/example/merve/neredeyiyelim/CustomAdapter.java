@@ -54,7 +54,7 @@ public class CustomAdapter extends BaseAdapter {
         TextView tvadi= (TextView) satir.findViewById(R.id.textViewAdi);
         tvadi.setText(menu.getMenuAdi());
         TextView tvfiyat = (TextView) satir.findViewById(R.id.textViewFiyati);
-        tvfiyat.setText(menu.getFiyat());
+        tvfiyat.setText(menu.getFiyat()+"");
 
         return satir;
     }

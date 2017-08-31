@@ -20,14 +20,12 @@ public class KullaniciAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
     ArrayList<KullaniciMenu> sonucList;
-    FirebaseUser fUser;
 
 
 
-    public KullaniciAdapter(Activity activity, ArrayList<KullaniciMenu> sonucList, FirebaseUser fUser) {
+    public KullaniciAdapter(Activity activity, ArrayList<KullaniciMenu> sonucList) {
         layoutInflater =(LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.sonucList = sonucList;
-        this.fUser = fUser;
     }
 
 
@@ -50,10 +48,10 @@ public class KullaniciAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
+        View satir=layoutInflater.inflate(R.layout.kullanici_satir,null);
         KullaniciMenu kmenu = sonucList.get(position);
-        View satir=layoutInflater.inflate(R.layout.custom_satir,null);
 
-        TextView tvmenuAdi= (TextView) satir.findViewById(R.id.textViewAdi);
+        TextView tvmenuAdi= (TextView) satir.findViewById(R.id.textViewMenuAdi);
         tvmenuAdi.setText(kmenu.getMenu());
 
 
@@ -61,7 +59,7 @@ public class KullaniciAdapter extends BaseAdapter {
         tvcafeAdi.setText(kmenu.getCafeAdi());
 
         TextView tvfiyat = (TextView) satir.findViewById(R.id.textViewFiyati);
-        tvfiyat.setText(kmenu.getFiyat());
+        tvfiyat.setText(kmenu.getFiyat()+"");
 
         TextView tvadres = (TextView) satir.findViewById(R.id.textViewAdres);
         tvadres.setText(kmenu.getAdres());

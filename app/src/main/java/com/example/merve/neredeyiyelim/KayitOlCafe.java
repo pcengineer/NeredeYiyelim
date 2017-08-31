@@ -43,6 +43,7 @@ public class KayitOlCafe extends AppCompatActivity {
         database=FirebaseDatabase.getInstance();
         dbRef=database.getReference("roles");
 cafelerRef=database.getReference("cafeler");
+
         btnOlustur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +57,12 @@ cafelerRef=database.getReference("cafeler");
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            //db'de roles altında bu cafenin id'sine cafe rolü atadık
                             dbRef.child(mAuth.getCurrentUser().getUid()).setValue("Cafe");//Cafe rolü atadık.
-                          cafelerRef.child(mAuth.getCurrentUser().getUid()).setValue("");//cafeler listesine ekledik.
+                            //db'de bu cafenin adını ve adresini kaydettik.
+                            cafelerRef.child(mAuth.getCurrentUser().getUid()).child("ad").setValue(cafeismi);
+                            cafelerRef.child(mAuth.getCurrentUser().getUid()).child("adres").setValue(adres);
+
                             Intent i = new Intent(getApplicationContext(),CafeGiris.class);
                             startActivity(i);
                             finish();

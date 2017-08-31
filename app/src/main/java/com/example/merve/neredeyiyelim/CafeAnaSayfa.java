@@ -39,15 +39,13 @@ public class CafeAnaSayfa extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
 
-        final DatabaseReference dbRef=database.getReference("cafeler/"+firebaseUser.getUid());
+        final DatabaseReference dbRef=database.getReference("cafeler/"+firebaseUser.getUid()+"/menuler");//cafe id sinin altına menüler ekle
 
         btnEkle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String menuAdi= etMenuAdi.getText().toString();
                 int fiyat =Integer.parseInt(etFiyat.getText().toString());
-
-
                 dbRef.push().setValue(new Menu(menuAdi,fiyat));
                 etMenuAdi.setText("");
                 etFiyat.setText("");

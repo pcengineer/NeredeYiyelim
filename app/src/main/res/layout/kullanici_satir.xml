@@ -7,38 +7,35 @@
 
     <TextView
         android:id="@+id/textViewMenuAdi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="Menu Adı"
+        android:layout_width="158dp"
+        android:layout_height="96dp"
         android:textSize="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="1">
 
         <TextView
             android:id="@+id/textViewCafeAdi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cafe Adi"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textViewFiyati"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Fiyati"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_weight="0.04" />
 
         <TextView
             android:id="@+id/textViewAdres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Adres"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_weight="0.03" />
 
     </LinearLayout>
 
