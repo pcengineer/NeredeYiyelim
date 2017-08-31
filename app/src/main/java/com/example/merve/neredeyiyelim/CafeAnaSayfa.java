@@ -45,7 +45,8 @@ public class CafeAnaSayfa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String menuAdi= etMenuAdi.getText().toString();
-                String fiyat = etFiyat.getText().toString();
+                int fiyat =Integer.parseInt(etFiyat.getText().toString());
+
 
                 dbRef.push().setValue(new Menu(menuAdi,fiyat));
                 etMenuAdi.setText("");

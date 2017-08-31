@@ -6,11 +6,12 @@ package com.example.merve.neredeyiyelim;
 
 public class Menu {
 
-    private String menuAdi,fiyat;
+    private String menuAdi;
+    private int fiyat;
 
     public Menu(){}
 
-    public Menu(String menuAdi, String fiyat) {
+    public Menu(String menuAdi, int fiyat) {
         this.menuAdi = menuAdi;
         this.fiyat = fiyat;
     }
@@ -23,11 +24,11 @@ public class Menu {
         this.menuAdi = menuAdi;
     }
 
-    public String getFiyat() {
+    public int getFiyat() {
         return fiyat;
     }
 
-    public void setFiyat(String fiyat) {
+    public void setFiyat(int fiyat) {
         this.fiyat = fiyat;
     }
 }

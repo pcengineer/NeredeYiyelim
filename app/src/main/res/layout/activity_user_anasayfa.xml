@@ -8,10 +8,31 @@
     tools:context="com.example.merve.neredeyiyelim.UserAnasayfa">
 
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="Kullanıcı Ekranı" />
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/editTextTutar"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:hint="Tutar"
+            android:inputType="textPersonName" />
+
+
+        <Button
+            android:id="@+id/buttonAra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ara" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/listViewSonuclar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>
