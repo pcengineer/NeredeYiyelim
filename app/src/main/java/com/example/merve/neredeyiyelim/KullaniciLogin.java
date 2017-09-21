@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class KullaniciLogin extends AppCompatActivity {
 
     EditText etKmail,etKsifre;
     Button btnGiris;
-    TextView tvyazi;
+    TextView tvyazi,tvcafeGiris;
 
     FirebaseAuth mAuth;
     String username,password;
@@ -35,11 +36,24 @@ FirebaseDatabase database;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kullanici_login);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
 
         etKmail = (EditText) findViewById(R.id.editTextKullaniciMail);
         etKsifre = (EditText) findViewById(R.id.editTextKullaniciSifre);
         btnGiris = (Button) findViewById(R.id.buttonKullaniciGiris);
         tvyazi = (TextView) findViewById(R.id.textViewUseryazi);
+        tvcafeGiris = (TextView) findViewById(R.id.textViewCafeGirisi);
+
+
+        tvcafeGiris.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(),CafeGiris.class);
+                startActivity(i);
+            }
+        });
 
 
 

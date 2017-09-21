@@ -26,7 +26,7 @@ public class KayitOlUser extends AppCompatActivity {
     String username,surname,mail,password;
     FirebaseAuth mAuth;
 
-FirebaseDatabase database;
+    FirebaseDatabase database;
     DatabaseReference dbRef;
 
 

@@ -19,23 +19,23 @@ import java.util.ArrayList;
 public class CustomAdapter extends BaseAdapter {
 
     LayoutInflater layoutInflater;
-    ArrayList<Menu> menuList;
+    ArrayList<Menuler> menulerList;
     FirebaseUser fUser;
 
-    public CustomAdapter(Activity activity, ArrayList<Menu> menuList, FirebaseUser fUser) {
+    public CustomAdapter(Activity activity, ArrayList<Menuler> menulerList, FirebaseUser fUser) {
         layoutInflater =(LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.menuList = menuList;
+        this.menulerList = menulerList;
         this.fUser = fUser;
     }
 
     @Override
     public int getCount() {
-        return menuList.size();
+        return menulerList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return menuList.get(position);
+        return menulerList.get(position);
     }
 
     @Override
@@ -48,13 +48,13 @@ public class CustomAdapter extends BaseAdapter {
 
 
 
-        Menu menu = menuList.get(position);
+        Menuler menuler = menulerList.get(position);
         View satir=layoutInflater.inflate(R.layout.custom_satir,null);
 
         TextView tvadi= (TextView) satir.findViewById(R.id.textViewAdi);
-        tvadi.setText(menu.getMenuAdi());
+        tvadi.setText(menuler.getMenuAdi());
         TextView tvfiyat = (TextView) satir.findViewById(R.id.textViewFiyati);
-        tvfiyat.setText(menu.getFiyat()+"");
+        tvfiyat.setText(menuler.getFiyat()+"");
 
         return satir;
     }

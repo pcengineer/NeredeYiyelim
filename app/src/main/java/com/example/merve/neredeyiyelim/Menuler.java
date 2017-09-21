@@ -4,14 +4,14 @@ package com.example.merve.neredeyiyelim;
  * Created by Merve on 25.08.2017.
  */
 
-public class Menu {
+public class Menuler {
 
     private String menuAdi;
     private int fiyat;
 
-    public Menu(){}
+    public Menuler(){}
 
-    public Menu(String menuAdi, int fiyat) {
+    public Menuler(String menuAdi, int fiyat) {
         this.menuAdi = menuAdi;
         this.fiyat = fiyat;
     }

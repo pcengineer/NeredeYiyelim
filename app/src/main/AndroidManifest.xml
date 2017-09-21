@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GirisActivity">
+        <activity android:name=".KullaniciLogin"
+            android:windowSoftInputMode="stateVisible|adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +22,6 @@
         <activity android:name=".CafeGiris" />
         <activity android:name=".KayitOlCafe" />
         <activity android:name=".CafeAnaSayfa" />
-        <activity android:name=".KullaniciLogin" />
         <activity android:name=".KayitOlUser" />
         <activity android:name=".UserAnasayfa"></activity>
     </application>

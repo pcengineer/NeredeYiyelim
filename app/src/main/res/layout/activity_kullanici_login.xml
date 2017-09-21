@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/login"
+    android:padding="50dp"
     tools:context="com.example.merve.neredeyiyelim.KullaniciLogin">
 
 
@@ -13,19 +15,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Mail" />
+        android:layout_marginTop="100dp"
+        android:drawableLeft="@drawable/ic_user_24dp"
+        android:drawablePadding="16dp"
+        android:drawableTint="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        android:hint="Username" />
 
     <EditText
         android:id="@+id/editTextKullaniciSifre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:hint="Sifre" />
+        android:layout_marginTop="8dp"
+        android:drawableLeft="@drawable/ic_lock_24dp"
+        android:drawablePadding="16dp"
+        android:drawableTint="@android:color/white"
+        android:textColorHint="@android:color/white"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        android:hint="Password" />
 
     <Button
         android:id="@+id/buttonKullaniciGiris"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
+        android:background="@drawable/button_shape"
         android:text="Giris" />
 
     <TextView
@@ -36,5 +55,15 @@
         android:textColor="#00ff00"
         android:layout_marginTop="35dp"
         android:gravity="center"
-        android:text="Hala Üye Değil misin??" />
+        android:text="Hesabınız yoksa üye olunuz" />
+
+    <TextView
+        android:id="@+id/textViewCafeGirisi"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="80dp"
+        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:textColor="#ff0000"
+        android:layout_height="wrap_content"
+        android:text="Cafe Girişi için tıklayınız ->" />
 </LinearLayout>

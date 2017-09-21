@@ -2,7 +2,9 @@ package com.example.merve.neredeyiyelim;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -22,6 +24,7 @@ public class CafeAnaSayfa extends AppCompatActivity {
     EditText etMenuAdi,etFiyat;
     Button btnEkle;
     FirebaseDatabase database;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,14 @@ public class CafeAnaSayfa extends AppCompatActivity {
         etFiyat= (EditText) findViewById(R.id.editTextFiyati);
         btnEkle = (Button) findViewById(R.id.buttonKaydet);
 
-        final ArrayList<Menu> menuList= new ArrayList<>();
+        final ArrayList<Menuler> menulerList= new ArrayList<>();
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
       
 
         database = FirebaseDatabase.getInstance();
+
+        mAuth = FirebaseAuth.getInstance();
 
         final DatabaseReference dbRef=database.getReference("cafeler/"+firebaseUser.getUid()+"/menuler");//cafe id sinin altına menüler ekle
 
@@ -46,7 +51,7 @@ public class CafeAnaSayfa extends AppCompatActivity {
             public void onClick(View v) {
                 String menuAdi= etMenuAdi.getText().toString();
                 int fiyat =Integer.parseInt(etFiyat.getText().toString());
-                dbRef.push().setValue(new Menu(menuAdi,fiyat));
+                dbRef.push().setValue(new Menuler(menuAdi,fiyat));
                 etMenuAdi.setText("");
                 etFiyat.setText("");
             }
@@ -54,14 +59,14 @@ public class CafeAnaSayfa extends AppCompatActivity {
 
 
 
-        final CustomAdapter adapter = new CustomAdapter(this,menuList,firebaseUser);
+        final CustomAdapter adapter = new CustomAdapter(this,menulerList,firebaseUser);
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                menuList.clear();
+                menulerList.clear();
                 for(DataSnapshot ds:dataSnapshot.getChildren()){
 
-                    menuList.add(ds.getValue(Menu.class));
+                    menulerList.add(ds.getValue(Menuler.class));
                 }
 
                 lvMenu.setAdapter(adapter);
@@ -74,7 +79,23 @@ public class CafeAnaSayfa extends AppCompatActivity {
             }
         });
 
+    }
 
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.exit)
+        {
+            mAuth.signOut();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

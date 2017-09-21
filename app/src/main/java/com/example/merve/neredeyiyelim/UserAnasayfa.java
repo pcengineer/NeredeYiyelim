@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +26,8 @@ public class UserAnasayfa extends AppCompatActivity {
     EditText etTutar;
     Button btnAra;
     FirebaseDatabase database;
-int fiyat;
+    FirebaseAuth mAuth;
+    int fiyat;
 
 
 
@@ -40,6 +43,7 @@ int fiyat;
 
 
         database=FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         final DatabaseReference dbRef=database.getReference("cafeler");
 
@@ -58,8 +62,9 @@ int fiyat;
                         for (final DataSnapshot ds : dataSnapshot.getChildren()) { //cafelerin çocuklarını geziyoruz
                             final String cafeAdi = ds.child("ad").getValue().toString();//cafenin adı
                             final String adres = ds.child("adres").getValue().toString();//cafe adresi
-                            final DatabaseReference dbRef2 = ds.child("menuler").getRef();
 
+
+                            final DatabaseReference dbRef2 = ds.child("menuler").getRef();
                             dbRef2.addValueEventListener(new ValueEventListener() {    //cafeler/menuler'i dinliyoruz
 
                                 @Override
@@ -101,13 +106,27 @@ int fiyat;
             }
         });
 //cafeler->cafeId->ad,adres,menuler->ad,fiyat
-
-
 //db 'de cafeleri dinledik
 
 
             }
 
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.exit)
+        {
+            mAuth.signOut();
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}
+
+
 

@@ -9,6 +9,7 @@
         android:id="@+id/textViewMenuAdi"
         android:layout_width="158dp"
         android:layout_height="96dp"
+        android:background="#123654"
         android:textSize="20dp" />
 
     <LinearLayout
@@ -21,12 +22,14 @@
             android:id="@+id/textViewCafeAdi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#693"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textViewFiyati"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#456987"
             android:textSize="20dp"
             android:layout_weight="0.04" />
 
@@ -34,6 +37,7 @@
             android:id="@+id/textViewAdres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#785412"
             android:textSize="20dp"
             android:layout_weight="0.03" />
 
