@@ -55,6 +55,7 @@ public class UserAnasayfa extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 fiyat =Integer.parseInt(etTutar.getText().toString());
+                final KullaniciAdapter[] adapter = new KullaniciAdapter[1];
                 dbRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,6 +81,11 @@ public class UserAnasayfa extends AppCompatActivity {
                                         }
                                     }
 
+                                    adapter[0] = new KullaniciAdapter(UserAnasayfa.this,sonucList);
+                                    lvSonuc.setAdapter(adapter[0]);
+
+                                    adapter[0].notifyDataSetChanged();
+
                                 }
 
                                 @Override
@@ -89,11 +95,12 @@ public class UserAnasayfa extends AppCompatActivity {
                             });
 
                         }
-                        final KullaniciAdapter adapter = new KullaniciAdapter(UserAnasayfa.this,sonucList);
-                        lvSonuc.setAdapter(adapter);
 
 
-                        adapter.notifyDataSetChanged();
+                        adapter[0] = new KullaniciAdapter(UserAnasayfa.this,sonucList);
+                        lvSonuc.setAdapter(adapter[0]);
+
+                        adapter[0].notifyDataSetChanged();
                     }
 
                     @Override

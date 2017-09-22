@@ -22,6 +22,7 @@ public class KayitOlCafe extends AppCompatActivity {
     EditText etCafeAdi,etCafeMail,etCafeSifre,etCafeAdres;
     Button btnOlustur;
 
+
     FirebaseAuth mAuth;
     String cafeismi,mail,sifre,adres;
 

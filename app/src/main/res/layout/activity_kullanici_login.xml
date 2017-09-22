@@ -6,8 +6,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/login"
-    android:padding="50dp"
+    android:padding="40dp"
     tools:context="com.example.merve.neredeyiyelim.KullaniciLogin">
+
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:src="@drawable/logo" />
 
 
     <EditText
@@ -15,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:drawableLeft="@drawable/ic_user_24dp"
         android:drawablePadding="16dp"
         android:drawableTint="@android:color/white"
@@ -45,25 +52,30 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:background="@drawable/button_shape"
-        android:text="Giris" />
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:text="Giriş" />
 
     <TextView
         android:id="@+id/textViewUseryazi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20dp"
-        android:textColor="#00ff00"
-        android:layout_marginTop="35dp"
+        android:textColor="#ffffff"
+        android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Hesabınız yoksa üye olunuz" />
+        android:text="Hesabınız yoksa üye olunuz!" />
 
     <TextView
         android:id="@+id/textViewCafeGirisi"
-        android:layout_marginTop="150dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="40dp"
         android:textSize="20dp"
+        android:textStyle="bold"
         android:layout_width="match_parent"
-        android:textColor="#ff0000"
+        android:textColor="#d50000"
         android:layout_height="wrap_content"
-        android:text="Cafe Girişi için tıklayınız ->" />
+        android:text="Cafe Girişi için tıklayınız ->"
+        android:textColorHighlight="#039BE5"
+        />
 </LinearLayout>
